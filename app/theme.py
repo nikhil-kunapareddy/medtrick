@@ -2,22 +2,22 @@
 Design tokens — colors, typography, and Plotly layout defaults.
 """
 
-# Palette
+# Palette — inspired by iOS Health widget dark theme
 C = dict(
-    bg       = "#080C18",
-    surface  = "#0F1525",
-    surface2 = "#141E30",
-    border   = "#1E2A3A",
-    purple   = "#818CF8",
-    cyan     = "#22D3EE",
-    green    = "#10B981",
-    pink     = "#F472B6",
-    amber    = "#F59E0B",
-    red      = "#EF4444",
-    text     = "#F1F5F9",
-    sub      = "#94A3B8",
-    muted    = "#475569",
-    grid     = "#1A2438",
+    bg       = "#0C0C0E",   # near-black (warmer than navy)
+    surface  = "#1C1C1E",   # iOS dark card
+    surface2 = "#2C2C2E",   # elevated surface
+    border   = "#3A3A3C",   # subtle separator
+    purple   = "#BF5AF2",   # iOS violet
+    cyan     = "#0A84FF",   # iOS blue
+    green    = "#30D158",   # iOS green (dominant accent)
+    pink     = "#FF375F",   # iOS pink-red
+    amber    = "#FFD60A",   # iOS yellow
+    red      = "#FF453A",   # iOS red
+    text     = "#FFFFFF",   # primary text
+    sub      = "#AEAEB2",   # secondary text
+    muted    = "#636366",   # muted / disabled
+    grid     = "#2C2C2E",   # chart gridlines
 )
 
 # Shared axis style

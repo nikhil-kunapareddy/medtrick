@@ -3,22 +3,22 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
-  background: #080C18 !important;
+  background: #0C0C0E !important;
   font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   margin: 0;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #0D1220; }
-::-webkit-scrollbar-thumb { background: #1E293B; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #334155; }
+::-webkit-scrollbar-track { background: #1C1C1E; }
+::-webkit-scrollbar-thumb { background: #3A3A3C; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #636366; }
 
 /* KPI gradient text */
 .kpi-value {
   font-size: 30px;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--kpi-color, #818CF8), #22D3EE);
+  background: linear-gradient(135deg, var(--kpi-color, #30D158), #0A84FF);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -26,16 +26,16 @@ body {
   letter-spacing: -0.02em;
 }
 
-/* Card glow on hover */
+/* Card hover lift */
 .dash-card {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .dash-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
 }
 
-/* Gradient border cards */
+/* KPI card subtle top-border accent */
 .kpi-card {
   position: relative;
   border-radius: 16px;
@@ -47,7 +47,7 @@ body {
   inset: 0;
   border-radius: 16px;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(129,140,248,0.3), rgba(34,211,238,0.1));
+  background: linear-gradient(135deg, rgba(48,209,88,0.25), rgba(10,132,255,0.1));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -60,25 +60,25 @@ body {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #475569;
+  color: #636366;
 }
 
-/* Pulse dot for live-ish data */
+/* Pulse dot */
 .pulse-dot {
   width: 8px; height: 8px;
-  background: #10B981;
+  background: #30D158;
   border-radius: 50%;
   display: inline-block;
   animation: pulse 2s infinite;
 }
 @keyframes pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
+  50% { opacity: 0.4; transform: scale(0.75); }
 }
 
 /* Tab styling override */
 .tab--selected {
-  border-top: 3px solid #818CF8 !important;
-  background-color: #111827 !important;
-  color: #F1F5F9 !important;
+  border-top: 3px solid #30D158 !important;
+  background-color: #1C1C1E !important;
+  color: #FFFFFF !important;
 }
