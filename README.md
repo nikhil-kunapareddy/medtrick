@@ -1,4 +1,4 @@
-# MedTrick — Personal Health Dashboard
+# Aayu — Personal Health Dashboard
 
 An interactive dark-themed dashboard for visualising wearable health data exported from the **Zepp** app (Amazfit devices).
 
@@ -23,7 +23,7 @@ Built with [Dash](https://dash.plotly.com/) + [Plotly](https://plotly.com/python
 **1. Clone the repo**
 ```bash
 git clone <repo-url>
-cd medtrick
+cd aayu
 ```
 
 **2. Create a virtual environment**
@@ -68,7 +68,7 @@ Open [http://localhost:8050](http://localhost:8050) in your browser.
 ## Project Structure
 
 ```
-medtrick/
+aayu/
 ├── dashboard.py        # Entry point — creates and runs the Dash app
 ├── app/
 │   ├── theme.py        # Design tokens: colours, Plotly layout defaults

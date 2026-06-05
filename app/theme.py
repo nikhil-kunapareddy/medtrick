@@ -2,32 +2,54 @@
 Design tokens — colors, typography, and Plotly layout defaults.
 """
 
-# Palette
+# Palette — pure-black canvas with the expanded high-contrast accent set
 C = dict(
-    bg       = "#080C18",
-    surface  = "#0F1525",
-    surface2 = "#141E30",
-    border   = "#1E2A3A",
-    purple   = "#818CF8",
-    cyan     = "#22D3EE",
-    green    = "#10B981",
-    pink     = "#F472B6",
-    amber    = "#F59E0B",
-    red      = "#EF4444",
-    text     = "#F1F5F9",
-    sub      = "#94A3B8",
-    muted    = "#475569",
-    grid     = "#1A2438",
+    bg       = "#000000",   # pure black canvas
+    surface  = "#0E0E11",   # near-black card
+    surface2 = "#17171B",   # elevated surface
+    border   = "#232328",   # subtle separator
+    purple   = "#A78BFA",   # original purple
+    cyan     = "#22D3EE",   # vibrant cyan
+    green    = "#4ADE80",   # mint green
+    pink     = "#FB7185",   # soft coral
+    amber    = "#FACC15",   # original yellow
+    red      = "#FB7185",   # alert (reuse coral)
+    text     = "#FFFFFF",   # primary text
+    sub      = "#8A8A92",   # secondary text
+    muted    = "#56565E",   # muted / disabled
+    grid     = "#18181B",   # very subtle gridlines
 )
 
-# Shared axis style
+# Friendly aliases (same hues, clearer names)
+C["lime"]   = C["green"]
+C["violet"] = C["purple"]
+C["orange"] = C["pink"]   # no orange in palette → fall back to coral
+
+# Shared axis style — minimal, horizontal-only gridlines
 AXIS = dict(
     gridcolor=C["grid"],
     showgrid=True,
     zeroline=False,
     tickfont=dict(color=C["sub"], size=10),
-    linecolor=C["border"],
+    linecolor="rgba(0,0,0,0)",
 )
+
+
+def _rgb(hex_color: str) -> tuple:
+    h = hex_color.lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def fade(hex_color: str, top: float = 0.42, bottom: float = 0.0) -> dict:
+    """Vertical fill gradient: saturated near the line, transparent at the baseline."""
+    r, g, b = _rgb(hex_color)
+    return dict(
+        type="vertical",
+        colorscale=[
+            [0.0, f"rgba({r},{g},{b},{bottom})"],
+            [1.0, f"rgba({r},{g},{b},{top})"],
+        ],
+    )
 
 
 def plot_base(**overrides) -> dict:
@@ -38,6 +60,7 @@ def plot_base(**overrides) -> dict:
         font          = dict(color=C["text"], family="Inter, sans-serif", size=11),
         margin        = dict(l=16, r=16, t=36, b=16),
         hovermode     = "x unified",
+        barcornerradius = 5,
         hoverlabel    = dict(
             bgcolor     = C["surface2"],
             font_color  = C["text"],
