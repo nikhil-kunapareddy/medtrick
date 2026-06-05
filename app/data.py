@@ -54,16 +54,16 @@ activity = activity[activity["steps"] > 0]
 # ── Body ───────────────────────────────────────────────────────────────────────
 
 body = _body_raw.copy()
-body["date"] = pd.to_datetime(body["time"])
+body["date"] = pd.to_datetime(body["time"]).dt.tz_localize(None)
 body = body[body["weight"].notna() & (body["weight"] > 0)]
 
 # ── Sport ──────────────────────────────────────────────────────────────────────
 
-SPORT_NAMES = {6: "Outdoor Walk", 8: "Running", 52: "Strength", 54: "Indoor Walk"}
+SPORT_NAMES = {1: "Running", 6: "Outdoor Walk", 8: "Running", 52: "Strength", 54: "Indoor Walk"}
 
 sport = _sport_raw.copy()
 sport["startTime"]    = pd.to_datetime(sport["startTime"], utc=True)
-sport["date"]         = sport["startTime"].dt.normalize()
+sport["date"]         = sport["startTime"].dt.normalize().dt.tz_localize(None)
 sport["durationMin"]  = (sport["sportTime(s)"] / 60).round(1)
 sport["cal"]          = sport["calories(kcal)"].round(1)
 sport["sportName"]    = sport["type"].map(SPORT_NAMES).fillna("Other")

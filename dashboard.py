@@ -1,5 +1,5 @@
 """
-MedTrick — Personal Health Dashboard
+Aayu — Personal Health Dashboard
 Entry point: initialises the Dash app, wires up the layout, and starts the server.
 """
 
@@ -9,7 +9,7 @@ from app.layout import build
 
 app = dash.Dash(
     __name__,
-    title="MedTrick · Health Dashboard",
+    title="Aayu · Health Dashboard",
     meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}],
 )
 

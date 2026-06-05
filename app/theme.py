@@ -2,32 +2,54 @@
 Design tokens — colors, typography, and Plotly layout defaults.
 """
 
-# Palette — inspired by iOS Health widget dark theme
+# Palette — pure-black canvas with the expanded high-contrast accent set
 C = dict(
-    bg       = "#0C0C0E",   # near-black (warmer than navy)
-    surface  = "#1C1C1E",   # iOS dark card
-    surface2 = "#2C2C2E",   # elevated surface
-    border   = "#3A3A3C",   # subtle separator
-    purple   = "#BF5AF2",   # iOS violet
-    cyan     = "#0A84FF",   # iOS blue
-    green    = "#30D158",   # iOS green (dominant accent)
-    pink     = "#FF375F",   # iOS pink-red
-    amber    = "#FFD60A",   # iOS yellow
-    red      = "#FF453A",   # iOS red
+    bg       = "#000000",   # pure black canvas
+    surface  = "#0E0E11",   # near-black card
+    surface2 = "#17171B",   # elevated surface
+    border   = "#232328",   # subtle separator
+    purple   = "#A78BFA",   # original purple
+    cyan     = "#22D3EE",   # vibrant cyan
+    green    = "#4ADE80",   # mint green
+    pink     = "#FB7185",   # soft coral
+    amber    = "#FACC15",   # original yellow
+    red      = "#FB7185",   # alert (reuse coral)
     text     = "#FFFFFF",   # primary text
-    sub      = "#AEAEB2",   # secondary text
-    muted    = "#636366",   # muted / disabled
-    grid     = "#2C2C2E",   # chart gridlines
+    sub      = "#8A8A92",   # secondary text
+    muted    = "#56565E",   # muted / disabled
+    grid     = "#18181B",   # very subtle gridlines
 )
 
-# Shared axis style
+# Friendly aliases (same hues, clearer names)
+C["lime"]   = C["green"]
+C["violet"] = C["purple"]
+C["orange"] = C["pink"]   # no orange in palette → fall back to coral
+
+# Shared axis style — minimal, horizontal-only gridlines
 AXIS = dict(
     gridcolor=C["grid"],
     showgrid=True,
     zeroline=False,
     tickfont=dict(color=C["sub"], size=10),
-    linecolor=C["border"],
+    linecolor="rgba(0,0,0,0)",
 )
+
+
+def _rgb(hex_color: str) -> tuple:
+    h = hex_color.lstrip("#")
+    return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
+
+
+def fade(hex_color: str, top: float = 0.42, bottom: float = 0.0) -> dict:
+    """Vertical fill gradient: saturated near the line, transparent at the baseline."""
+    r, g, b = _rgb(hex_color)
+    return dict(
+        type="vertical",
+        colorscale=[
+            [0.0, f"rgba({r},{g},{b},{bottom})"],
+            [1.0, f"rgba({r},{g},{b},{top})"],
+        ],
+    )
 
 
 def plot_base(**overrides) -> dict:
@@ -38,6 +60,7 @@ def plot_base(**overrides) -> dict:
         font          = dict(color=C["text"], family="Inter, sans-serif", size=11),
         margin        = dict(l=16, r=16, t=36, b=16),
         hovermode     = "x unified",
+        barcornerradius = 5,
         hoverlabel    = dict(
             bgcolor     = C["surface2"],
             font_color  = C["text"],

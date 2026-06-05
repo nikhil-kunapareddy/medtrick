@@ -3,22 +3,22 @@
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
-  background: #0C0C0E !important;
+  background: #000000 !important;
   font-family: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   margin: 0;
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: #1C1C1E; }
-::-webkit-scrollbar-thumb { background: #3A3A3C; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #636366; }
+::-webkit-scrollbar-track { background: #0E0E11; }
+::-webkit-scrollbar-thumb { background: #232328; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #56565E; }
 
-/* KPI gradient text */
+/* KPI gradient text — duotone fading into the lime brand accent */
 .kpi-value {
   font-size: 30px;
   font-weight: 800;
-  background: linear-gradient(135deg, var(--kpi-color, #30D158), #0A84FF);
+  background: linear-gradient(135deg, var(--kpi-color, #4ADE80), #4ADE80);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -47,7 +47,7 @@ body {
   inset: 0;
   border-radius: 16px;
   padding: 1px;
-  background: linear-gradient(135deg, rgba(48,209,88,0.25), rgba(10,132,255,0.1));
+  background: linear-gradient(135deg, rgba(74,222,128,0.28), rgba(167,139,250,0.12));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -60,13 +60,13 @@ body {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #636366;
+  color: #56565E;
 }
 
 /* Pulse dot */
 .pulse-dot {
   width: 8px; height: 8px;
-  background: #30D158;
+  background: #4ADE80;
   border-radius: 50%;
   display: inline-block;
   animation: pulse 2s infinite;
@@ -76,9 +76,42 @@ body {
   50% { opacity: 0.4; transform: scale(0.75); }
 }
 
+/* Global month dropdown (dark) — Dash 4 dropdown is themed via --Dash-* vars.
+   Set globally so the portalled options menu inherits the dark theme too. */
+:root {
+  --Dash-Fill-Inverse-Strong: #0E0E11;          /* control + menu background */
+  --Dash-Text-Strong: #FFFFFF;                  /* primary text */
+  --Dash-Text-Weak: #8A8A92;                    /* secondary text */
+  --Dash-Text-Disabled: #56565E;
+  --Dash-Stroke-Strong: #232328;                /* borders */
+  --Dash-Fill-Interactive-Strong: #4ADE80;      /* accent / selected */
+  --Dash-Fill-Interactive-Weak: rgba(255,255,255,0.05);
+  --Dash-Shading-Strong: rgba(255,255,255,0.10);/* hover overlay */
+  --Dash-Shading-Weak: rgba(255,255,255,0.06);
+  --Dash-Fill-Disabled: rgba(255,255,255,0.08);
+}
+
+/* Pill-shaped trigger + cohesive content panel */
+.month-dropdown .dash-dropdown-trigger {
+  border-radius: 999px;
+  min-height: 40px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.month-dropdown .dash-dropdown-content {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+}
+.month-dropdown .dash-dropdown-option { border-radius: 8px; }
+/* selected option: readable dark text on the green accent fill */
+.month-dropdown .dash-dropdown-option[data-state="selected"],
+.month-dropdown .dash-dropdown-option[aria-selected="true"] { color: #000000; font-weight: 600; }
+
 /* Tab styling override */
 .tab--selected {
-  border-top: 3px solid #30D158 !important;
-  background-color: #1C1C1E !important;
+  border-top: 3px solid #4ADE80 !important;
+  background-color: #0E0E11 !important;
   color: #FFFFFF !important;
 }
