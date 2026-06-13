@@ -1,14 +1,14 @@
 """
 Plotly figure builders.
 
-Each function returns a go.Figure ready to be dropped into a dcc.Graph.
+Each function returns a go.Figure ready to be dropped into a Streamlit chart.
 """
 
 import pandas as pd
 import plotly.graph_objects as go
 
-from app import data as d
-from app.theme import C, AXIS, fade, plot_base
+from core import data as d
+from core.theme import C, AXIS, fade, plot_base
 
 
 # Local timezone the UTC sleep timestamps are displayed in.

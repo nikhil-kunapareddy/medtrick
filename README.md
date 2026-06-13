@@ -2,7 +2,7 @@
 
 An interactive dark-themed dashboard for visualising wearable health data exported from the **Zepp** app (Amazfit devices).
 
-Built with [Dash](https://dash.plotly.com/) + [Plotly](https://plotly.com/python/).
+Built with [Streamlit](https://streamlit.io/) + [Plotly](https://plotly.com/python/).
 
 ---
 
@@ -58,10 +58,10 @@ Each folder should contain a single `.csv` file as exported by Zepp.
 
 **5. Run**
 ```bash
-python dashboard.py
+streamlit run streamlit_app.py
 ```
 
-Open [http://localhost:8050](http://localhost:8050) in your browser.
+Streamlit opens [http://localhost:8501](http://localhost:8501) in your browser automatically.
 
 ---
 
@@ -69,14 +69,16 @@ Open [http://localhost:8050](http://localhost:8050) in your browser.
 
 ```
 aayu/
-├── dashboard.py        # Entry point — creates and runs the Dash app
-├── app/
+├── streamlit_app.py    # Entry point — the Streamlit view (run this)
+├── core/               # Framework-agnostic logic
 │   ├── theme.py        # Design tokens: colours, Plotly layout defaults
 │   ├── data.py         # CSV loading, data processing, KPI computations
-│   ├── charts.py       # Plotly figure builders (one function per chart)
-│   └── layout.py       # Dash layout and UI component helpers
-├── assets/
-│   └── custom.css      # Dark theme styles loaded automatically by Dash
+│   └── charts.py       # Plotly figure builders (one function per chart)
+├── ui/                 # Streamlit view primitives
+│   ├── styles.py       # Injected CSS for the custom dark theme
+│   └── components.py   # Banner / card / footer helpers
+├── .streamlit/
+│   └── config.toml     # Base dark theme config
 ├── requirements.txt
 └── .gitignore
 ```
